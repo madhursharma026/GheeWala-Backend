@@ -7,6 +7,10 @@ import { Product } from './product/entities/product.entity';
 import { CategoryModule } from './category/category.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Category } from './category/entities/category.entity';
+import { User } from './auth/user.entity';
+import { OrderModule } from './order/order.module';
+import { Order } from './order/entities/order.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,14 +27,16 @@ import { Category } from './category/entities/category.entity';
         username: 'root',
         password: '',
         database: 'gheewala',
-        entities: [Category, Product],
+        entities: [Category, Product, User, Order],
         synchronize: true,
         autoLoadEntities: true,
         };
       },
     }),
     CategoryModule,
-    ProductModule
+    AuthModule,
+    ProductModule,
+    OrderModule
   ],
   controllers: [AppController],
   providers: [AppService],
